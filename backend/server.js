@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const awssecret = "Akiabbsj 2ibcu7nm";
+const secret = "Akiabbsccccs";
 app.use(cors());
 
 
