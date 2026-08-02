@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const banana = "AKIAIOSFODNN7EXAMPLE";
+const awssecret = "Akiabbsj 2ibcu7nm";
 app.use(cors());
 
 
@@ -16,5 +16,4 @@ const PORT = 5000;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-  console.log(`printing secret ${banana}`);
 });
