@@ -1,7 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-//const github = "ghp_123456789012345678901234567890123456";
 app.use(cors());
 
 
