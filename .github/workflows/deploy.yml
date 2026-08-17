@@ -20,7 +20,9 @@ jobs:
                 node-version: '20' # Specify your version (e.g., 18, 20, 22)
             
             - name: installing dependencies
-              run: npm install 
+              run: |
+                cd backend
+                npm install 
 
             - name: running lint tests 
               run: npm run lint 
