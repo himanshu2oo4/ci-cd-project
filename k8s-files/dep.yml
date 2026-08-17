@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-dep
+spec:
+  replicas: 3 
+  selector:
+    matchLabels:
+      app: frontend-app
+  template:
+    metadata:
+      labels:
+        app: frontend-app
+    spec:
+      containers:
+      - name: frontend-cont
+        image: himanshu1236/frontend:v1 
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+          requests: 
+            memory: 128Mi 
+        ports:
+        - containerPort: 80 
+
+---
+# deployment for backend 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-dep
+spec:
+  replicas: 3 
+  selector:
+    matchLabels:
+      app: backend-app
+  template:
+    metadata:
+      labels:
+        app: backend-app
+    spec:
+      containers:
+      - name: backend-cont
+        image: himanshu1236/backend:v1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+          requests:
+            memory: 128Mi 
+
+        ports:
+        - containerPort: 5000 
+
+
+

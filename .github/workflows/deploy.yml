@@ -3,8 +3,11 @@ on:
     push: 
         branches: 
             - main 
-    workflow_dispatch: 
 
+env: 
+    NAMESPACE: "project"
+    FRONTEND_SVC: frontend-svc
+    BACKEND_SVC: backend-svc 
 jobs: 
     build-and-push: 
         runs-on: self-hosted 
@@ -19,16 +22,14 @@ jobs:
               uses: actions/setup-node@v4
               with:
                 node-version: '20' # Specify your version (e.g., 18, 20, 22)
+                cache: 'npm'       # Automatically caches npm dependencies
+
             
             - name: installing dependencies
-              run: |
-                cd backend
-                npm install 
+              run: npm install 
 
             - name: running lint tests 
-              run: |
-                cd backend
-                npm run lint 
+              run: npm run lint 
 
             - name: Login to Docker Hub
               uses: docker/login-action@v4
@@ -68,3 +69,14 @@ jobs:
                     docker --version
                     kind get clusters
                     kubectl get nodes
+            - name: Deploying over k8s 
+              run: | 
+                cd k8s-files 
+                kubectl apply -f namespace.yml 
+                kubectl apply -f dep.yml 
+                kubectl apply -f services.yml 
+                kubectl get pods 
+                kubectl get pods -n $NAMESPACE 
+                kubectl get svc -n $NAMESPACE 
+                kubectl describe svc/$FRONTEND_SVC -n $NAMESPACE 
+                kubectl describe svc/$BACKEND_SVC -n $NAMESPACE 
