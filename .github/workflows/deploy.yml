@@ -13,6 +13,13 @@ jobs:
             
             - name: Gitleaks scan 
               uses: gitleaks/gitleaks-action@v2
+
+            - name: setting up nodejs 
+              uses: actions/setup-node@v4
+              with:
+                node-version: '20' # Specify your version (e.g., 18, 20, 22)
+                cache: 'npm'       # Automatically caches npm dependencies
+
             
             - name: installing dependencies
               run: npm install 
@@ -41,6 +48,7 @@ jobs:
 
 
     Deployment: 
+        needs: build-and-push
         runs-on: self-hosted
         steps: 
             - name: checkout code 
