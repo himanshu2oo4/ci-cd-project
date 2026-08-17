@@ -18,8 +18,6 @@ jobs:
               uses: actions/setup-node@v4
               with:
                 node-version: '20' # Specify your version (e.g., 18, 20, 22)
-                cache: 'npm'       # Automatically caches npm dependencies
-
             
             - name: installing dependencies
               run: npm install 
