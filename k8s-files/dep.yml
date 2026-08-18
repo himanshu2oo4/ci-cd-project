@@ -23,7 +23,7 @@ spec:
           requests: 
             memory: 128Mi 
         ports:
-        - containerPort: 80 
+        - containerPort: 8080
 
 ---
 # deployment for backend 
