@@ -43,10 +43,10 @@ jobs:
                 password: ${{ secrets.DOCKERHUB_TOKEN }}
               
             - name: Building frontend image  
-              run: docker build -t ${{ secrets.DOCKERHUB_USERNAME}}/frontend:v1 ./backend 
+              run: docker build -t ${{ secrets.DOCKERHUB_USERNAME}}/frontend:v1 ./frontend 
 
             - name: Building backend image
-              run: docker build -t ${{ secrets.DOCKERHUB_USERNAME}}/backend:v1 ./frontend 
+              run: docker build -t ${{ secrets.DOCKERHUB_USERNAME}}/backend:v1 ./backend 
 
             - name: pushing to dockerhub 
               run: | 
